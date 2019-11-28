@@ -16,7 +16,7 @@ module TerraformModule
           json: opts[:parse]
       }
       value = RubyTerraform.output(params)
-      opts[:parse] ? JSON.parse(value) : value
+      opts[:parse] ? JSON.parse(value, symbolize_names: true) : value
     end
 
     def provision_for(role, overrides = nil)

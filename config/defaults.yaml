@@ -1,7 +1,15 @@
 ---
-region: 'us-east-1'
+region: 'eu-west-2'
 
 component: 'test'
 
 work_directory: 'build'
 configuration_directory: "%{hiera('work_directory')}/%{hiera('source_directory')}"
+
+domain_name: "%{hiera('deployment_identifier')}.greasedscone.uk"
+
+subject_alternative_name_1: "%{hiera('deployment_identifier')}-1.greasedscone.uk"
+subject_alternative_name_2: "%{hiera('deployment_identifier')}-2.greasedscone.uk"
+
+public_zone_id: 'Z4Q2X3ESOZT4N'
+private_zone_id: 'Z2CDAFD23Q10HO'

@@ -1,14 +1,15 @@
-Terraform AWS Group
-===================
+Terraform AWS ACM Certificate
+=============================
 
-[![CircleCI](https://circleci.com/gh/infrablocks/terraform-aws-group.svg?style=svg)](https://circleci.com/gh/infrablocks/terraform-aws-group)
+[![CircleCI](https://circleci.com/gh/infrablocks/terraform-aws-acm-certificate.svg?style=svg)](https://circleci.com/gh/infrablocks/terraform-aws-acm-certificate)
 
-A Terraform module for managing an AWS IAM group.
+A Terraform module to create and DNS validate an ACM certificate.
 
-The group deployment has no requirements.
+The certificate deployment depends on an existing Route53 hosted zone.
  
-The group deployment consists of:
-* 
+The certificate deployment consists of:
+* an ACM certificate for the specified domain and SANs
+* domain validation records fot the specified domain and all SANs 
 
 Usage
 -----
@@ -17,8 +18,8 @@ To use the module, include something like the following in your terraform
 configuration:
 
 ```hcl-terraform
-module "group" {
-  source = "infrablocks/group/aws"
+module "acm_certificate" {
+  source = "infrablocks/acm-certificate/aws"
   version = "0.0.1"
 }
 ```
@@ -196,7 +197,7 @@ Contributing
 ------------
 
 Bug reports and pull requests are welcome on GitHub at 
-https://github.com/infrablocks/terraform-aws-user. 
+https://github.com/infrablocks/terraform-aws-acm-certificate. 
 This project is intended to be a safe, welcoming space for collaboration, and 
 contributors are expected to adhere to 
 the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
