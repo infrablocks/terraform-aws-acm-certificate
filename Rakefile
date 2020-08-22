@@ -25,7 +25,7 @@ end
 
 RakeTerraform.define_installation_tasks(
     path: File.join(Dir.pwd, 'vendor', 'terraform'),
-    version: '0.12.15')
+    version: '0.12.28')
 
 task :default => 'test:integration'
 
