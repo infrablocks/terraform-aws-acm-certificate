@@ -35,6 +35,8 @@ resource "aws_route53_record" "domain_validation" {
   records = [
     each.value.record_value
   ]
+
+  allow_overwrite = true
 }
 
 resource "aws_acm_certificate_validation" "domain_validation" {
