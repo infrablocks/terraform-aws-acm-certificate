@@ -6,6 +6,13 @@ locals {
       record_value: domain_validation.resource_record_value,
     }
   ]
+  domain_validation_records = {
+    for domain_validation in aws_acm_certificate.certificate.domain_validation_options : domain_validation.domain_name => {
+      record_name = domain_validation.resource_record_name
+      record_type = domain_validation.resource_record_type
+      record_value = domain_validation.resource_record_value
+    }
+  }
 }
 
 resource "aws_acm_certificate" "certificate" {
@@ -20,13 +27,7 @@ resource "aws_acm_certificate" "certificate" {
 }
 
 resource "aws_route53_record" "domain_validation" {
-  for_each = {
-    for domain_validation in aws_acm_certificate.certificate.domain_validation_options : domain_validation.domain_name => {
-      record_name   = domain_validation.resource_record_name
-      record_type   = domain_validation.resource_record_type
-      record_value = domain_validation.resource_record_value
-    }
-  }
+  for_each = local.domain_validation_records
 
   zone_id = var.zone_id
   name = each.value.record_name
@@ -37,6 +38,10 @@ resource "aws_route53_record" "domain_validation" {
   ]
 
   allow_overwrite = true
+
+  depends_on = [
+    aws_acm_certificate.certificate
+  ]
 }
 
 resource "aws_acm_certificate_validation" "domain_validation" {
