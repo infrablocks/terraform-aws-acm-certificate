@@ -23,7 +23,7 @@ resource "aws_acm_certificate" "certificate" {
 }
 
 resource "aws_route53_record" "domain_validation" {
-  count = length(local.domain_validation_records)
+  count = length(var.subject_alternative_names) + 1
 
   zone_id = var.zone_id
   name = element(local.domain_validation_records, count.index).resource_record_name
