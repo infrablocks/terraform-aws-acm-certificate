@@ -13,4 +13,10 @@ module "acm_certificate" {
   subject_alternative_names = var.subject_alternative_names
 
   zone_id = var.zone_id
+
+  providers = {
+    aws.certificate: aws
+    aws.domain_validation: aws
+    aws.san_validation: aws
+  }
 }
