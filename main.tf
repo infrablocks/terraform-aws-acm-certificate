@@ -44,7 +44,7 @@ resource "aws_route53_record" "domain_validation" {
 
   for_each = local.domain_validation_records
 
-  zone_id = var.zone_id
+  zone_id = var.domain_zone_id
   name = each.value.record_name
   type = each.value.record_type
   ttl = 60
@@ -64,7 +64,7 @@ resource "aws_route53_record" "subject_alternative_name_validation" {
 
   for_each = local.subject_alternative_name_validation_records
 
-  zone_id = var.zone_id
+  zone_id = var.subject_alternative_name_zone_id
   name = each.value.record_name
   type = each.value.record_type
   ttl = 60
