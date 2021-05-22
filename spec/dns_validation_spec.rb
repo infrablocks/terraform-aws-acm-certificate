@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'DNS validation' do
   let(:zone_id) { vars.zone_id }
   let(:domain_validations) {
-    output_for(:harness, 'domain_validations', parse: true)
+    output_for(:harness, 'domain_validations')
   }
 
   subject {

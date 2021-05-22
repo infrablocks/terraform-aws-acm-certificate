@@ -7,7 +7,8 @@ data "terraform_remote_state" "prerequisites" {
 }
 
 module "acm_certificate" {
-  source = "../../../../"
+  # This makes absolutely no sense. I think there's a bug in terraform.
+  source = "./../../../../../../../"
 
   domain_name = var.domain_name
   domain_zone_id = var.zone_id
