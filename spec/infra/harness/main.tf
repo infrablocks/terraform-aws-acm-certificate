@@ -17,7 +17,7 @@ module "acm_certificate" {
 
   providers = {
     aws.certificate: aws
-    aws.domain_validation: aws
-    aws.san_validation: aws
+    aws.domainvalidation: aws
+    aws.sanvalidation: aws
   }
 }

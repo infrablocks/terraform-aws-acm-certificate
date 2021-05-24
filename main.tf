@@ -40,7 +40,7 @@ resource "aws_acm_certificate" "certificate" {
 }
 
 resource "aws_route53_record" "domain_validation" {
-  provider = aws.domain_validation
+  provider = aws.domainvalidation
 
   for_each = local.domain_validation_records
 
@@ -60,7 +60,7 @@ resource "aws_route53_record" "domain_validation" {
 }
 
 resource "aws_route53_record" "subject_alternative_name_validation" {
-  provider = aws.san_validation
+  provider = aws.sanvalidation
 
   for_each = local.subject_alternative_name_validation_records
 

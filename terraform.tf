@@ -7,8 +7,8 @@ terraform {
       version = "~> 3.39"
       configuration_aliases = [
         aws.certificate,
-        aws.domain_validation,
-        aws.san_validation
+        aws.domainvalidation,
+        aws.sanvalidation
       ]
     }
   }
