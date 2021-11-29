@@ -19,8 +19,20 @@ configuration:
 
 ```hcl-terraform
 module "acm_certificate" {
-  source = "infrablocks/acm-certificate/aws"
-  version = "0.0.1"
+  source  = "infrablocks/acm-certificate/aws"
+  version = "1.0.0"
+
+  domain_name = "*.${data.terraform_remote_state.domain.outputs.domain_name}"
+  domain_zone_id = data.terraform_remote_state.domain.outputs.public_zone_id
+
+  subject_alternative_names = []
+  subject_alternative_name_zone_id = data.terraform_remote_state.domain.outputs.public_zone_id
+
+  providers = {
+    aws.certificate = aws
+    aws.domain_validation = aws
+    aws.san_validation = aws
+  }
 }
 ```
 
