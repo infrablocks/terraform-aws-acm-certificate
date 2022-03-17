@@ -110,7 +110,7 @@ RakeGithub.define_repository_tasks(
   github_config =
     YAML.load_file('config/secrets/github/config.yaml')
 
-  t.access_token = github_config["github_personal_access_token"]
+  t.access_token = github_config['github_personal_access_token']
   t.deploy_keys = [
     {
       title: 'CircleCI',
