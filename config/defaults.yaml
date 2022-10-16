@@ -2,14 +2,12 @@
 region: 'eu-west-2'
 
 component: 'test'
+deployment_identifier: "%{hiera('seed')}"
 
-work_directory: 'build'
-configuration_directory: "%{hiera('work_directory')}/%{hiera('source_directory')}"
+domain_name: "%{hiera('deployment_identifier')}.infrablocks.click"
 
-domain_name: "%{hiera('deployment_identifier')}.greasedscone.uk"
+subject_alternative_name_1: "%{hiera('deployment_identifier')}-1.infrablocks.click"
+subject_alternative_name_2: "%{hiera('deployment_identifier')}-2.infrablocks.click"
 
-subject_alternative_name_1: "%{hiera('deployment_identifier')}-1.greasedscone.uk"
-subject_alternative_name_2: "%{hiera('deployment_identifier')}-2.greasedscone.uk"
-
-public_zone_id: 'Z4Q2X3ESOZT4N'
-private_zone_id: 'Z2CDAFD23Q10HO'
+public_zone_id: 'Z08829023L5IPIQBJOX63'
+private_zone_id: 'Z0211739BXR21FNN139O'

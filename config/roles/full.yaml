@@ -1,0 +1,12 @@
+---
+configuration_directory: "%{cwd}/examples/full"
+state_file: "%{cwd}/state/full.tfstate"
+vars:
+  region: "%{hiera('region')}"
+
+  domain_name: "%{hiera('domain_name')}"
+  subject_alternative_names:
+    - "%{hiera('subject_alternative_name_1')}"
+    - "%{hiera('subject_alternative_name_2')}"
+
+  zone_id: "%{hiera('public_zone_id')}"
