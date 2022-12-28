@@ -72,7 +72,7 @@ Development
 In order for the build to run correctly, a few tools will need to be installed
 on your development machine:
 
-* Ruby (3.1.1)
+* Ruby (3.1)
 * Bundler
 * git
 * git-crypt
