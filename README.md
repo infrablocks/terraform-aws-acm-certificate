@@ -6,10 +6,11 @@ Terraform AWS ACM Certificate
 A Terraform module to create and DNS validate an ACM certificate.
 
 The certificate deployment depends on an existing Route53 hosted zone.
- 
+
 The certificate deployment consists of:
+
 * an ACM certificate for the specified domain and SANs
-* domain validation records fot the specified domain and all SANs 
+* domain validation records fot the specified domain and all SANs
 
 Usage
 -----
@@ -20,24 +21,24 @@ configuration:
 ```hcl-terraform
 module "acm_certificate" {
   source  = "infrablocks/acm-certificate/aws"
-  version = "1.0.0"
+  version = "1.1.0"
 
-  domain_name = "*.${data.terraform_remote_state.domain.outputs.domain_name}"
+  domain_name    = "*.${data.terraform_remote_state.domain.outputs.domain_name}"
   domain_zone_id = data.terraform_remote_state.domain.outputs.public_zone_id
 
-  subject_alternative_names = []
+  subject_alternative_names        = []
   subject_alternative_name_zone_id = data.terraform_remote_state.domain.outputs.public_zone_id
 
   providers = {
-    aws.certificate = aws
+    aws.certificate       = aws
     aws.domain_validation = aws
-    aws.san_validation = aws
+    aws.san_validation    = aws
   }
 }
 ```
 
-See the 
-[Terraform registry entry](https://registry.terraform.io/modules/infrablocks/acm-certificate/aws/latest) 
+See the
+[Terraform registry entry](https://registry.terraform.io/modules/infrablocks/acm-certificate/aws/latest)
 for more details.
 
 ### Inputs
@@ -52,7 +53,7 @@ for more details.
 
 ### Compatibility
 
-This module is compatible with Terraform versions greater than or equal to 
+This module is compatible with Terraform versions greater than or equal to
 Terraform 1.0.
 
 Development
@@ -60,7 +61,7 @@ Development
 
 ### Machine Requirements
 
-In order for the build to run correctly, a few tools will need to be installed 
+In order for the build to run correctly, a few tools will need to be installed
 on your development machine:
 
 * Ruby (3.1.1)
@@ -114,17 +115,28 @@ direnv allow <repository-directory>
 
 ### Running the build
 
-Running the build requires an AWS account and AWS credentials. You are free to 
+Running the build requires an AWS account and AWS credentials. You are free to
 configure credentials however you like as long as an access key ID and secret
-access key are available. These instructions utilise 
+access key are available. These instructions utilise
 [aws-vault](https://github.com/99designs/aws-vault) which makes credential
 management easy and secure.
 
-To provision module infrastructure, run tests and then destroy that 
-infrastructure, execute:
+To run the full build, including unit and integration tests, execute:
 
 ```bash
 aws-vault exec <profile> -- ./go
+```
+
+To run the unit tests, execute:
+
+```bash
+aws-vault exec <profile> -- ./go test:unit
+```
+
+To run the integration tests, execute:
+
+```bash
+aws-vault exec <profile> -- ./go test:integration
 ```
 
 To provision the module prerequisites:
@@ -151,21 +163,21 @@ To destroy the module prerequisites:
 aws-vault exec <profile> -- ./go deployment:prerequisites:destroy[<deployment_identifier>]
 ```
 
-Configuration parameters can be overridden via environment variables:
+Configuration parameters can be overridden via environment variables. For 
+example, to run the unit tests with a seed of `"testing"`, execute:
 
 ```bash
-DEPLOYMENT_IDENTIFIER=testing aws-vault exec <profile> -- ./go
+SEED=testing aws-vault exec <profile> -- ./go test:unit
 ```
 
-When a deployment identifier is provided via an environment variable, 
-infrastructure will not be destroyed at the end of test execution. This can
-be useful during development to avoid lengthy provision and destroy cycles.
+When a seed is provided via an environment variable, infrastructure will not be 
+destroyed at the end of test execution. This can be useful during development 
+to avoid lengthy provision and destroy cycles.
 
-By default, providers will be downloaded for each terraform execution. To
-cache providers between calls:
+To subsequently destroy unit test infrastructure for a given seed:
 
 ```bash
-TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache" aws-vault exec <profile> -- ./go
+FORCE_DESTROY=yes SEED=testing aws-vault exec <profile> -- ./go test:unit
 ```
 
 ### Common Tasks
@@ -181,6 +193,7 @@ ssh-keygen -m PEM -t rsa -b 4096 -C integration-test@example.com -N '' -f config
 #### Generating a self-signed certificate
 
 To generate a self signed certificate:
+
 ```
 openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365
 ```
@@ -217,14 +230,14 @@ openssl aes-256-cbc \
 Contributing
 ------------
 
-Bug reports and pull requests are welcome on GitHub at 
-https://github.com/infrablocks/terraform-aws-acm-certificate. 
-This project is intended to be a safe, welcoming space for collaboration, and 
-contributors are expected to adhere to 
+Bug reports and pull requests are welcome on GitHub at
+https://github.com/infrablocks/terraform-aws-acm-certificate.
+This project is intended to be a safe, welcoming space for collaboration, and
+contributors are expected to adhere to
 the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 License
 -------
 
-The library is available as open source under the terms of the 
+The library is available as open source under the terms of the
 [MIT License](http://opensource.org/licenses/MIT).
