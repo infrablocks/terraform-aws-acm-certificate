@@ -43,13 +43,19 @@ for more details.
 
 ### Inputs
 
-| Name                  | Description                                      | Default | Required |
-|-----------------------|--------------------------------------------------|:-------:|:--------:|
+| Name                             | Description                                                                               | Default | Required |
+|----------------------------------|-------------------------------------------------------------------------------------------|:-------:|:--------:|
+| domain_name                      | The domain name of the certificate to manage.                                             |    -    |   yes    |
+| domain_zone_id                   | The ID of the hosted zone in which to manage domain validation records.                   |    -    |   yes    |
+| subject_alternative_names        | The subject alternative names of the certificate to manage.                               |   []    |    no    |
+| subject_alternative_name_zone_id | The ID of the hosted zone in which to create subject alternative name validation records. |    -    |   yes    |
 
 ### Outputs
 
-| Name | Description |
-|------|-------------|
+| Name               | Description                                                                            |
+|--------------------|----------------------------------------------------------------------------------------|
+| certificate_arn    | The ARN of the managed certificate.                                                    |
+| domain_validations | A list of the domain validations that have been performed for the managed certificate. |
 
 ### Compatibility
 
@@ -163,15 +169,15 @@ To destroy the module prerequisites:
 aws-vault exec <profile> -- ./go deployment:prerequisites:destroy[<deployment_identifier>]
 ```
 
-Configuration parameters can be overridden via environment variables. For 
+Configuration parameters can be overridden via environment variables. For
 example, to run the unit tests with a seed of `"testing"`, execute:
 
 ```bash
 SEED=testing aws-vault exec <profile> -- ./go test:unit
 ```
 
-When a seed is provided via an environment variable, infrastructure will not be 
-destroyed at the end of test execution. This can be useful during development 
+When a seed is provided via an environment variable, infrastructure will not be
+destroyed at the end of test execution. This can be useful during development
 to avoid lengthy provision and destroy cycles.
 
 To subsequently destroy unit test infrastructure for a given seed:

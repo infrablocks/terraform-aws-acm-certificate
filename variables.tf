@@ -1,6 +1,6 @@
 variable "domain_name" {
   type = string
-  description = "The domain name of the certificate to create."
+  description = "The domain name of the certificate to manage."
 }
 variable "domain_zone_id" {
   type = string
