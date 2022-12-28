@@ -1,7 +1,9 @@
 Terraform AWS ACM Certificate
 =============================
 
-[![CircleCI](https://circleci.com/gh/infrablocks/terraform-aws-acm-certificate.svg?style=svg)](https://circleci.com/gh/infrablocks/terraform-aws-acm-certificate)
+[![Version](https://img.shields.io/github/v/tag/infrablocks/terraform-aws-acm-certificate?label=version&sort=semver)](https://github.com/infrablocks/terraform-aws-acm-certificate/tags)
+[![Build Pipeline](https://img.shields.io/circleci/build/github/infrablocks/terraform-aws-acm-certificate/main?label=build-pipeline)](https://app.circleci.com/pipelines/github/infrablocks/terraform-aws-acm-certificate?filter=all)
+[![Maintainer](https://img.shields.io/badge/maintainer-go--atomic.io-red)](https://go-atomic.io)
 
 A Terraform module to create and DNS validate an ACM certificate.
 
