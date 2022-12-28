@@ -45,19 +45,19 @@ for more details.
 
 ### Inputs
 
-| Name                             | Description                                                                               | Default | Required |
-|----------------------------------|-------------------------------------------------------------------------------------------|:-------:|:--------:|
-| domain_name                      | The domain name of the certificate to manage.                                             |    -    |   yes    |
-| domain_zone_id                   | The ID of the hosted zone in which to manage domain validation records.                   |    -    |   yes    |
-| subject_alternative_names        | The subject alternative names of the certificate to manage.                               |   []    |    no    |
-| subject_alternative_name_zone_id | The ID of the hosted zone in which to create subject alternative name validation records. |    -    |   yes    |
+| Name                               | Description                                                                               | Default | Required |
+|------------------------------------|-------------------------------------------------------------------------------------------|:-------:|:--------:|
+| `domain_name`                      | The domain name of the certificate to manage.                                             |    -    |   Yes    |
+| `domain_zone_id`                   | The ID of the hosted zone in which to manage domain validation records.                   |    -    |   Yes    |
+| `subject_alternative_names`        | The subject alternative names of the certificate to manage.                               |  `[]`   |    No    |
+| `subject_alternative_name_zone_id` | The ID of the hosted zone in which to create subject alternative name validation records. |    -    |   Yes    |
 
 ### Outputs
 
-| Name               | Description                                                                            |
-|--------------------|----------------------------------------------------------------------------------------|
-| certificate_arn    | The ARN of the managed certificate.                                                    |
-| domain_validations | A list of the domain validations that have been performed for the managed certificate. |
+| Name                 | Description                                                                            |
+|----------------------|----------------------------------------------------------------------------------------|
+| `certificate_arn`    | The ARN of the managed certificate.                                                    |
+| `domain_validations` | A list of the domain validations that have been performed for the managed certificate. |
 
 ### Compatibility
 
