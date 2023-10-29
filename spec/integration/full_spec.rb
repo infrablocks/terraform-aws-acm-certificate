@@ -31,7 +31,7 @@ describe 'full' do
 
     its(:subject_alternative_names) do
       is_expected
-        .to(contain_exactly(*([domain_name] + subject_alternative_names)))
+        .to(match_array(([domain_name] + subject_alternative_names)))
     end
   end
 
