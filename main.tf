@@ -58,7 +58,7 @@ moved {
 
 moved {
   from = aws_acm_certificate_validation.validation
-  to = module.certificate.aws_acm_certificate_validation.validation
+  to = module.certificate.aws_acm_certificate_validation.validation[0]
 }
 
 moved {
@@ -68,5 +68,5 @@ moved {
 
 moved {
   from = aws_route53_record.subject_alternative_name_validation
-  to = module.subject_alternative_name_validations.aws_route53_record.certificate_validation
+  to = module.subject_alternative_name_validations.aws_route53_record.certificate_validation[0]
 }
