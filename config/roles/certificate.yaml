@@ -1,0 +1,10 @@
+---
+configuration_directory: "%{cwd}/spec/unit/infra/certificate"
+state_file: "%{cwd}/state/certificate.tfstate"
+vars:
+  region: "%{hiera('region')}"
+
+  domain_name: "%{hiera('domain_name')}"
+  subject_alternative_names:
+    - "%{hiera('subject_alternative_name_1')}"
+    - "%{hiera('subject_alternative_name_2')}"

@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe 'DNS validation' do
+describe 'root module DNS validation' do
   let(:domain_name) do
     var(role: :root, name: 'domain_name')
   end

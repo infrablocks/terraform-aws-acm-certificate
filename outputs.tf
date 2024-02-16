@@ -1,6 +1,6 @@
 output "certificate_arn" {
   description = "The ARN of the managed certificate."
-  value = aws_acm_certificate.certificate.arn
+  value = module.certificate.certificate_arn
 }
 
 output "domain_validations" {

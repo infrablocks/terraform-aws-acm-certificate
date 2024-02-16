@@ -1,0 +1,7 @@
+---
+configuration_directory: "%{cwd}/spec/unit/infra/validations"
+state_file: "%{cwd}/state/validations.tfstate"
+vars:
+  region: "%{hiera('region')}"
+
+  zone_id: "%{hiera('public_zone_id')}"

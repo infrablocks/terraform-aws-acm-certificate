@@ -2,18 +2,18 @@
 
 require 'spec_helper'
 
-describe 'certificate' do
+describe 'certificate module certificate resource' do
   let(:domain_name) do
-    var(role: :root, name: 'domain_name')
+    var(role: :certificate, name: 'domain_name')
   end
 
   let(:subject_alternative_names) do
-    var(role: :root, name: 'subject_alternative_names')
+    var(role: :certificate, name: 'subject_alternative_names')
   end
 
   describe 'by default' do
     before(:context) do
-      @plan = plan(role: :root)
+      @plan = plan(role: :certificate)
     end
 
     it 'creates a certificate' do
