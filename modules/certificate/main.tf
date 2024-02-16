@@ -1,7 +1,7 @@
 locals {
   domain_validation_fqdns = [
     for domain_validation_options in aws_acm_certificate.certificate.domain_validation_options:
-      replace(domain_validation_options.resource_record_name, "/\.$/", "")
+      replace(domain_validation_options.resource_record_name, "/\\.$/", "")
   ]
 }
 
