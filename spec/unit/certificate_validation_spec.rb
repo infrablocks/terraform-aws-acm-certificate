@@ -24,7 +24,8 @@ describe 'certificate module certificate validation resource' do
     it 'does not create a certificate validation' do
       expect(@plan)
         .not_to(
-          include_resource_creation(type: 'aws_acm_certificate_validation'))
+          include_resource_creation(type: 'aws_acm_certificate_validation')
+        )
     end
   end
 
@@ -41,4 +42,3 @@ describe 'certificate module certificate validation resource' do
     end
   end
 end
-
